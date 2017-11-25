@@ -4,17 +4,17 @@
 #include <string>
 // MODIFY FOR NEW OP
 // Operator codes.
-#define ADD 0
-#define SUB 1
-#define MLT 2
-#define DIV 3
-#define UNM 4
-#define LPN 5
-#define RPN 6
-#define PWR 7 //Power operator code
-#define FCT 8 // Factorial operator code
-#define MOD 9
-#define UNK -1 
+#define ADD 0   //Addition
+#define SUB 1   //Subtraction
+#define MLT 2   //Multiplication
+#define DIV 3   //Division
+#define UNM 4   //Unary minus
+#define LPN 5   //Left parenthesis
+#define RPN 6   //Right parenthesis
+#define PWR 7   //Exponent
+#define FCT 8   //Factorial 
+#define MOD 9   //Mod
+#define UNK -1  //Unknown
 
 // MODIFY FOR NEW OP CHARS
 // Operator chars.
@@ -27,11 +27,13 @@
 #define RPN_CHAR ')'
 #define PWR_CHAR '^' //Power operator character
 #define FCT_CHAR '!' //Factorial operator character
-#define MOD_CHAR '%'
+#define MOD_CHAR '%' //Mod operator character
 
-// Other useful char defines.
+// Other useful char definitions.
+
 // Space character
 #define SPC ' '
+
 // Newline character
 #define NEWLINE '\n'
 
@@ -56,7 +58,7 @@ class Tokenizer {
 
     // Return token type of most recently read token. NUM - number, OP -
     // operator, ERR - error, END - end of input, use define token type
-    // codes at top of this file
+    // codes at top of this file.
     int type() const;
 
     // Return most recently read number.
@@ -69,25 +71,26 @@ class Tokenizer {
     // Return true if end of input encountered.
     bool end_of_stream() const;
     
-    //counts number of left parenthesis
+    //Counts number of left parenthesis.
     int lpn_counter();
 
-    //counts number of right parenthesis
+    //Counts number of right parenthesis.
     int rpn_counter();
     
-    // Reset get token to initial conditions.
+    //Reset get token to initial conditions.
     void reset();
 
   private:
     
-    //Contains the lpn_count number tracking the number of left parenthesis
+    //Contains the lpn_count number tracking the number of left parenthesis.
     int lpn_count;
     
-    //Contains the rpn_count number tracking the number of right parenthesis
+    //Contains the rpn_count number tracking the number of right parenthesis.
     int rpn_count;
+  
     // Set to:  NUM - number, OP - operator, ERR - error, END - end of
     // input, for most recently read token, uses define token type codes at
-    // top of this file
+    // top of this file.
     char token_type;
 
     // Contains the op code of the most recent operator read from stream.
@@ -104,7 +107,7 @@ class Tokenizer {
     bool unary_minus;
 
     // Return op code of operator starting with char, negative if
-    // unrecognized operator.  Must be consistent with OP codes at top of
+    // unrecognized operator. Must be consistent with OP codes at top of
     // this file.
     int op_code(char); 
 
