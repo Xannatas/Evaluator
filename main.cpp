@@ -5,12 +5,16 @@
 using namespace std;
 
 
+//Main function prompting user for infix expression.
+//Translates infix expression to postfix expression.
+//Inserts the postfix expression onto the stack.
+//Solves the expression by popping the items off of the stack.
 
 int main() {
  double a;
  Tokenizer tokenizer;
  Evaluator expression;
- while(true) {
+ while(true) {		//Continues to prompt the user for new inputs until program is exited
   tokenizer.reset();
   expression.reset();
   cout << "Enter infix expression: ";
@@ -18,7 +22,7 @@ int main() {
    cout << "Exiting..." <<endl;
    return 0; 
   }
-  while(tokenizer.type()!=ERR && tokenizer.type()!=END) {
+  while(tokenizer.type()!=ERR && tokenizer.type()!=END) {	//While not an error or not end of stream
    tokenizer.next();
    switch(tokenizer.type()) {
     case NUM:
