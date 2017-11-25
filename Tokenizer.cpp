@@ -3,12 +3,13 @@
 
 // Allison Collier , Isaiah Banta
 
-/* The above and beyond in this homework is adding an exponent operator as well as a factorial operator which will also set us up for the next homework assignment when we implement these operators in the stack for the computation. We also added two function lpn_counter() and rpn_counter() that return the number of left and right parenthesis respectively. This was used to add a feature where the program detects if there are mismatched parenthesis in the input and then exits*/ 
-
-
 
 using namespace std;
 
+//Constructor. 
+//Initializes <end> (for end of infix expression) to false.
+//Initializes unary minus to true, (if no number before '-', UNM = true).
+//Initializes the LPN and RPN counters to 0. 
 Tokenizer::Tokenizer() {
  token_type = NUM;
  end = false;
@@ -17,14 +18,19 @@ Tokenizer::Tokenizer() {
  rpn_count = 0;
 }
 
+//Prompts the user for an infix expression.
 void Tokenizer::prompt() const {
  cout << "Enter infix expressions: ";
 }
 
+//Checks the next number or operator.
+//If the character is \n, then we are done.
+//If it is a number then it stores the number as itself.
+//Otherwise, it is an operator, and we assign an op code.
 void Tokenizer::next() {
  eat_spaces();
  char temp;
- temp = char(cin.peek());
+ temp = char(cin.peek());       //Sets temp equal to the next char
  if (temp==NEWLINE) {
   end = true;
   token_type = END;
@@ -36,7 +42,7 @@ void Tokenizer::next() {
   unary_minus = false;
  }
  else {
-  token_type=OP;
+  token_type=OP;        //All of these token types were defined in the Tokenizer.h file
   switch(temp) {
    case ADD_CHAR:
     unary_minus = true;
@@ -89,31 +95,38 @@ void Tokenizer::next() {
   cin.get();
  }
 }
- 
+
+//Returns the token type.
 int Tokenizer::type() const {
  return token_type;
 }
 
+//Returns the number.
 double Tokenizer::num_read() const{
  return num;
 }
 
+//Returns the operator. 
 int Tokenizer::op_read() const{
  return op;
 }
 
+//Returns the number of left parenthesis.
 int Tokenizer::lpn_counter(){
  return lpn_count;
 }
 
+//Returns the number of right parenthesis.
 int Tokenizer::rpn_counter(){
  return rpn_count;
 }
  
+//Removes spaces from user input.
 void Tokenizer::eat_spaces() const{
  while(char(cin.peek()) == SPC) {cin.ignore();}
 }
 
+//Resets the values initialized in the constructor
 void Tokenizer::reset() {
  end = false;
  token_type = NUM;
@@ -122,6 +135,7 @@ void Tokenizer::reset() {
  lpn_count = 0;
 }
 
+//Returns the boolean value of <end>.
 bool Tokenizer::end_of_stream() const{
  return end;
 }
