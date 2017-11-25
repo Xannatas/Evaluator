@@ -6,7 +6,8 @@
 
 using namespace std;
 
-// Global precedence const array, uses op defines in Tokenizer.h
+// Global precedence const array, uses operation codes defined in Tokenizer.h
+
 // Set this to the total number of operators.
 #define PREC_DIM 9
 static const bool prec[PREC_DIM][PREC_DIM] =
@@ -38,7 +39,7 @@ class Evaluator {
     // Reset stacks, error.
     void reset();
 
-    // Returns current value of error
+    // Returns current value of error.
     bool problem();
 
   private:
@@ -55,9 +56,6 @@ class Evaluator {
     stack<int> ops;
     // Num stack
     stack<double> nums;
-
-
-
 
 };
 
