@@ -9,9 +9,9 @@ using namespace std;
 /* Our above and beyond is the POW Operator. Works for both positive and negative numbers*/
 /* Also follows order of operations PEMDAS */
 
-// Constructor. Set error flag to false.
+// Constructor. Initialize error flag to false.
 Evaluator::Evaluator() {
- error=false;
+ error = false;
 }
 
 // Push a number onto the num stack.
@@ -36,7 +36,7 @@ void Evaluator::op(int i) {
 }
 
 
-// Finish remaining ops, return result.
+// Finish remaining ops until the ops stack is empty, then return result.
 double Evaluator::finish() {
  double result;
  while(!ops.empty()) {
@@ -81,7 +81,7 @@ void Evaluator::execute_op() {
   int op = ops.top();
   double result;
   switch(op) {
-   case ADD:
+   case ADD:		// Addition case
     ops.pop();
     nums.pop();
     if(!nums.empty()){
@@ -92,7 +92,7 @@ void Evaluator::execute_op() {
 else{error=true;
 }
     break;
-   case SUB:
+   case SUB:		//Subtraction case
     ops.pop(); 
     nums.pop();
     if(!nums.empty()){
@@ -103,7 +103,7 @@ else{error=true;
 	else{error=true;
 	}
     break;
-   case MLT:
+   case MLT:		//Multiplication case
     ops.pop();
     nums.pop();
     if(!nums.empty()){
@@ -114,7 +114,7 @@ else{error=true;
 else{error=true;
 }
     break;
-   case DIV:
+   case DIV:		//Division case
     ops.pop();
     nums.pop();
     if(!nums.empty()){
@@ -126,7 +126,7 @@ else{error=true;
 else{error=true;
 }
     break;
-   case UNM:
+   case UNM:		//Unary Minus case
     nums.pop();
     result = -num1;
     ops.pop();
@@ -139,7 +139,7 @@ else{error=true;
     result = pow(num2, num1);
     break;
   }
-   nums.push(result);
+   nums.push(result); 	//Pushes the result of the operation onto the num stack
  }
 }
 
