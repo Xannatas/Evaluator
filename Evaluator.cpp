@@ -19,7 +19,8 @@ void Evaluator::num(double d) {
  nums.push(d);
 }
 
-// Evaluate an operator.//decides do I push onto the op stack or do I pop it
+// Evaluate an operator.
+//Decides to push onto the op stack or pop it
 void Evaluator::op(int i) {
  if (ops.empty() == true) {ops.push(i);}
  else if (push_op(i, ops.top())) {
@@ -44,7 +45,7 @@ double Evaluator::finish() {
  return nums.top();
 }
 
-// Reset stacks, error.
+// In the case of an error: reset stacks.
 void Evaluator::reset() {
  while(nums.empty() == false) {
   nums.pop();
@@ -55,7 +56,7 @@ void Evaluator::reset() {
  error = false;
 }
 
-// Returns current value of error
+// Returns current bool value of error.
 bool Evaluator::problem() {
  return error;
 }
